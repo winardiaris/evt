@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>EVT</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -62,6 +62,10 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            img.logo{
+              max-width:400px;
+              margin-bottom:3%;
+            }
         </style>
     </head>
     <body>
@@ -78,16 +82,9 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
+            <img class="logo" src="{{asset('img/logo.png')}}">
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://github.com/winardiaris/evt">GitHub</a>
                 </div>
             </div>
         </div>
