@@ -1,2 +1,2 @@
 # evt
-organize event of tamiya mini 42d
+organize event of tamiya mini 4wd
