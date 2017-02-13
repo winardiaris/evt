@@ -6,7 +6,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">Profile</div>
       <div class="panel-body">
-      {{ Form::model($user,['route'=>['profile-update',$user->id],'method'=>'POST'])}}
+      {{ Form::model($user,['route'=>['profile-update',$user->username],'method'=>'POST'])}}
         @include('profile.form')
         {!! Form::submit('Save',['class'=>'btn btn-primary']) !!}
       {!! Form::close() !!}
