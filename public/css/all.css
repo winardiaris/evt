@@ -12,6 +12,10 @@
 .welcome-logo{
   width:300px;
 }
+.user_avatar{
+  width:20px;
+  margin-left:5px;
+}
 
 /*
  * Social Buttons for Bootstrap

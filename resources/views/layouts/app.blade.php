@@ -49,12 +49,22 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+											<li style="margin-top:10px">
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="ZHMCFERZ2VPBY">
+<input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/id_ID/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+</li>
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Log In</a></li>
                             <li><a href="{{ route('register') }}">Sign Up</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+																		<img class="user_avatar" src="{{ProfileController::getAvatar()}}">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

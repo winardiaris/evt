@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Facade;
 //============
 use App\User;
 use App\UsersProfile;
@@ -15,7 +16,7 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+      $this->middleware('auth');
     }
     public function view(Request $request,$username){
       $user=User::where('username',$username)->first();
@@ -64,4 +65,10 @@ class ProfileController extends Controller
         }
       }
     }
+    public static function getAvatar(){
+      $user_id =  Auth::user()->id;
+      $avatar =  UsersProfile::select('attribute_value')->where('users_id',$user_id)->where('attribute_name','attribute_avatar')->first();
+      return $avatar->attribute_value;
+    }
+
 }

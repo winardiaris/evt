@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'ProfileController@getAvatar');
 
 Route::get('/a/fb', 'SocialAuthController@redirect');
 Route::get('/cb/fb', 'SocialAuthController@callback');

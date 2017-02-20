@@ -230,6 +230,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'ProfileController' => App\Http\Controllers\ProfileController::class,
 
     ],
 

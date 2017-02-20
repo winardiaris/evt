@@ -18,8 +18,7 @@ class SocialAccountService
     } else {
       $account = new SocialAccount([
         'provider_user_id' => $providerUser->getId(),
-        'provider' => 'facebook',
-        'avatar' => 'https://graph.facebook.com/v2.8/'.$providerUser->getId().'/picture?width=1920'
+        'provider' => 'facebook'
 
       ]);
 
@@ -33,6 +32,12 @@ class SocialAccountService
           'username' => $_username,
           'password' =>  Hash::make($providerUser->getId()),
 
+        ]);
+
+        UsersProfile::create([
+          'users_id'=>$user->id,
+          'attribute_name'=>'attribute_avatar',
+          'attribute_value'=>'https://graph.facebook.com/v2.8/'.$providerUser->getId().'/picture?width=1920'
         ]);
 
       }

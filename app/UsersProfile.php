@@ -10,4 +10,5 @@ class UsersProfile extends Model
     protected $fillable = [
       'users_id','attribute_name', 'attribute_value',
     ];
+
 }

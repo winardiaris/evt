@@ -21,10 +21,10 @@
     ['class'=>'form-control','placeholder'=>'Country of origin']) !!}
   {!! $errors->first('attribute_country_id','<p class="help-block">:message</p>')!!}
 </div>
-<div class="form-group {!! $errors->has('attribute_photo') ? 'has-error':'' !!}">
-  {!!Form::label('attribute_photo','Photo') !!}
-  {!!Form::file('attribute_photo') !!}
-  {!! $errors->first('attribute_photo','<p class="help-block">:message</p>')!!}
+<div class="form-group {!! $errors->has('attribute_avatar') ? 'has-error':'' !!}">
+  {!!Form::label('attribute_avatar','Avatar') !!}
+  {!!Form::file('attribute_avatar') !!}
+  {!! $errors->first('attribute_avatar','<p class="help-block">:message</p>')!!}
 </div>
 <div class="form-group {!! $errors->has('attribute_bio') ? 'has-error':'' !!}">
   {!!Form::label('attribute_bio','Biography') !!}
