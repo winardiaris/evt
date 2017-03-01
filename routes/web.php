@@ -22,10 +22,11 @@ Route::get('/home', 'ProfileController@getAvatar');
 Route::get('/a/fb', 'SocialAuthController@redirect');
 Route::get('/cb/fb', 'SocialAuthController@callback');
 
-Route::get('/{username}/profile',['as'=>'profile-view','uses'=> 'ProfileController@view']);
+Route::get('/{username}/',['as'=>'profile-view','uses'=> 'ProfileController@view']);
 
 Route::group(['middleware'=>'CheckUser'],function(){
   Route::get('/{username}/profile/edit',['as'=>'profile-edit','uses'=> 'ProfileController@edit']);
   Route::post('/{username}/profile/update',['as'=>'profile-update','uses'=> 'ProfileController@update']);
 });
 
+Route::post('/a/f/{username}',['as'=>'add-friend','uses'=>'FriendListController@addfriend']);
