@@ -12,6 +12,7 @@ use App\User;
 use App\UsersProfile;
 use App\CountryList;
 use App\FriendList;
+use App\ImageContainer;
 
 
 
@@ -88,8 +89,27 @@ class ProfileController extends Controller
 
 		public function avatarUpdate(Request $request,$username){
       $user=User::where('username',$username)->first();
-
-			//disini nanti response upload gambar dengan macam ukuran
+			if($request->hasFile('avatar')){
+				$file = $request->file('avatar');
+				$uploadImage = (new ImageContainerController)->uploadImage($user->id,$file,'avatar');
+				//disini nanti response upload gambar dengan macam ukuran
+				$userprofile = UsersProfile::where('users_id',$user->id)->where('attribute_name','attribute_avatar')->first();
+				if(count($userprofile)>0){
+					$userprofile->update([
+						'attribute_value'=>$uploadImage
+					]);
+				}else{
+					//insert
+					UsersProfile::create([
+						'users_id'=>$user->id,
+						'attribute_name'=>'attribute_avatar',
+						'attribute_value'=>$uploadImage
+					]);
+				}
+				return redirect()->back();
+				/* return $uploadImage; */
+			}
+			return "tidak ada photo // harusnya redirect kesebelumnya dan kasih notif salah filetype";
 		}
 
 }

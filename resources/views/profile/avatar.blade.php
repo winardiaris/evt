@@ -1,11 +1,11 @@
 <div class="user-avatar">
   <div class="panel panel-default">
-    @if(Auth::user()->id == $user->id)
+    @if(Route::is('profile-edit'))
     <div class="panel-body isme">
-    {{Form::model($user,['route'=>['avatar-update',$user->username],'method'=>'POST'])}}
-      {{Form::file('avatar',['hidden'=>'hidden','class'=>'inputAvatar'])}}
-      {{Form::submit('',['hidden'=>'hidden','class'=>'avatarSubmit'])}}
-    {{Form::close()}}
+        {{Form::model($user,['route'=>['avatar-update',$user->username],'method'=>'POST','enctype'=>'multipart/form-data'])}}
+          {{Form::file('avatar',['hidden'=>'hidden','class'=>'inputAvatar','accept'=>'image/*'])}}
+          {{Form::submit('',['hidden'=>'hidden','class'=>'avatarSubmit'])}}
+        {{Form::close()}}
     @else
     <div class="panel-body ">
     @endif
