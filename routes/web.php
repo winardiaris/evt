@@ -27,6 +27,7 @@ Route::get('/{username}/',['as'=>'profile-view','uses'=> 'ProfileController@view
 Route::group(['middleware'=>'CheckUser'],function(){
   Route::get('/{username}/profile/edit',['as'=>'profile-edit','uses'=> 'ProfileController@edit']);
   Route::post('/{username}/profile/update',['as'=>'profile-update','uses'=> 'ProfileController@update']);
+  Route::post('/{username}/u/av',['as'=>'avatar-update','uses'=> 'ProfileController@avatarUpdate']);
 });
 
 Route::post('/a/f/{username}',['as'=>'add-friend','uses'=>'FriendListController@addfriend']);

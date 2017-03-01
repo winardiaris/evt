@@ -63,11 +63,6 @@ class ProfileController extends Controller
 				return redirect()->route('profile-view',['username'=>$user->username]);
       }
     }
-    public static function getAvatar(){
-      $user_id =  Auth::user()->id;
-      $avatar =  UsersProfile::select('attribute_value')->where('users_id',$user_id)->where('attribute_name','attribute_avatar')->first();
-      return $avatar->attribute_value;
-    }
 		public function getUserProfile($username){
       $user=User::where('username',$username)->first();
       $data_profile=UsersProfile::select('attribute_name','attribute_value')->where('users_id',$user->id)->get();
@@ -89,6 +84,12 @@ class ProfileController extends Controller
 				$profile = array_combine($ar_name,$ar_value);
 			}
 			return $profile;
+		}
+
+		public function avatarUpdate(Request $request,$username){
+      $user=User::where('username',$username)->first();
+
+			//disini nanti response upload gambar dengan macam ukuran
 		}
 
 }

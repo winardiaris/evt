@@ -23,6 +23,9 @@
   position:inherit;
   max-width:100%;
 }
+.user-avatar .inputAvatar{
+  display:none;
+}
 .user-info span{
   font-size:1.5em;
   color:#1a1a1a;

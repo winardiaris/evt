@@ -1,4 +1,10 @@
 $(document).ready(function(){
-  console.log('arsars');
+  $("div.isme img").click(function(){
+  console.log("avatar click");
+    $(".inputAvatar").click();
+  });
+  $("div.isme .inputAvatar").change(function(){
+    $('.avatarSubmit').click();
+  });
 });
 
