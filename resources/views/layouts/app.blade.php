@@ -62,15 +62,28 @@
                             <li><a href="{{ route('login') }}">Log In</a></li>
                             <li><a href="{{ route('register') }}">Sign Up</a></li>
                         @else
+														<li class="dropdown">
+															<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+																<img class="addfriend_icon" src="{{asset('img/addfriend.png')}}">
+															</a>
+															<ul class="dropdown-menu" role="menu">
+															<li>
+																<a href="#"> 
+																<img src="">
+																	arars following you
+																</a>
+															</li>
+															</ul>
+														</li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-																		<img class="user_avatar" src="{{ProfileController::getAvatar()}}">
+																		<img class="user_icon" src="{{!isset($userProfile['attribute_avatar']) ?  asset('img/defaultmanavatar.png'):$userProfile['attribute_avatar'] }}">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                      <a href="{{url(Auth::user()->username).'/profile'}}">
+                                      <a href="{{url(Auth::user()->username)}}">
                                         Profile
                                       </a>
                                     </li>
@@ -97,6 +110,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/all.js')}}"></script>
 </body>
 </html>
