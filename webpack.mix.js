@@ -11,12 +11,15 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js');
-
-mix.combine([
-       'resources/assets/css/bootstrap.min.css',
-       'resources/assets/css/main.css',
-       'node_modules/bootstrap-social/bootstrap-social.css',
-       'node_modules/font-awesome/css/font-awesome.min.css',
-], 'public/css/all.css');
-mix.copy('node_modules/font-awesome/fonts', 'public/fonts/');
+mix.js('resources/assets/js/app.js', 'public/js')
+  .combine([
+    'resources/assets/js/main.js',
+    'resources/assets/js/a.js'
+  ],'public/js/all.js')
+  .combine([
+    'resources/assets/css/bootstrap.min.css',
+    'resources/assets/css/main.css',
+    'node_modules/bootstrap-social/bootstrap-social.css',
+    'node_modules/font-awesome/css/font-awesome.min.css',
+  ], 'public/css/all.css')
+  .copy('node_modules/font-awesome/fonts', 'public/fonts/');
