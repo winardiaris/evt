@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Facade;
 //============
 use App\User;
 use App\UsersProfile;
+use App\CountryList;
+use App\FriendList;
+
 
 
 class ProfileController extends Controller
@@ -20,23 +23,17 @@ class ProfileController extends Controller
     }
     public function view(Request $request,$username){
       $user=User::where('username',$username)->first();
-      return view('profile.view',compact('user'));
+      $userProfile = $this->getUserProfile($username);
+			$isfriend = (new FriendListController)->isfriend(Auth::user()->id,$user->id);
+			$isapproved = (new FriendListController)->isapproved(Auth::user()->id,$user->id);
+      return view('profile.view',compact('user','userProfile','isfriend','isapproved'));
     }
     public function edit($username){
       $user=User::where('username',$username)->first();
       $data_country = DB::table('country_list')->pluck('country_name','country_id');
-      $data_profile=UsersProfile::select('attribute_name','attribute_value')->where('users_id',$user->id)->get();
-      $ar_name = array();
-      $ar_value = array();
-      foreach($data_profile as $prof){
-        array_push($ar_name,$prof->attribute_name);
-        array_push($ar_value,$prof->attribute_value);
-      }
-      $profile = array_combine($ar_name,$ar_value);
-      /* return dd($profile); */
+      $userProfile = $this->getUserProfile($username);
 
-
-      return view('profile.edit',compact('user','data_country','profile'));
+      return view('profile.edit',compact('user','data_country','userProfile'));
     }
     public function update(Request $request){
       if($request){
@@ -62,7 +59,8 @@ class ProfileController extends Controller
               ]);
             }
           }
-        }
+				}
+				return redirect()->route('profile-view',['username'=>$user->username]);
       }
     }
     public static function getAvatar(){
@@ -70,5 +68,27 @@ class ProfileController extends Controller
       $avatar =  UsersProfile::select('attribute_value')->where('users_id',$user_id)->where('attribute_name','attribute_avatar')->first();
       return $avatar->attribute_value;
     }
+		public function getUserProfile($username){
+      $user=User::where('username',$username)->first();
+      $data_profile=UsersProfile::select('attribute_name','attribute_value')->where('users_id',$user->id)->get();
+			$profile='';
+			if($data_profile->count()>0){
+				$ar_name = array();
+				$ar_value = array();
+				$attribute_country_id ='';
+				foreach($data_profile as $prof){
+					array_push($ar_name,$prof->attribute_name);
+					array_push($ar_value,$prof->attribute_value);
+					if($prof->attribute_name == 'attribute_country_id'){
+						$attribute_country_id = $prof->attribute_value;
+					}
+				}
+				$country_list=CountryList::where('country_id',$attribute_country_id)->first();
+				array_push($ar_name,'attribute_country');
+				array_push($ar_value,$country_list->country_name);
+				$profile = array_combine($ar_name,$ar_value);
+			}
+			return $profile;
+		}
 
 }
