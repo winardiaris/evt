@@ -59,8 +59,14 @@
                             <hr>
                         </div>
                         <div class="col-md-12">
-                            <a href="a/fb/" class="btn btn-block btn-social  btn-facebook">
+                            <a href="a/facebook/" class="btn btn-block btn-social  btn-facebook">
                               <span class="fa fa-facebook"></span> Login with Facebook
+                            </a>
+                            <a href="a/google/" class="btn btn-block btn-social  btn-google">
+                              <span class="fa fa-google"></span> Login with Google
+                            </a>
+                            <a href="a/twitter/" class="btn btn-block btn-social  btn-twitter">
+                              <span class="fa fa-twitter"></span> Login with Twitter
                             </a>
                         </div>
                     </form>

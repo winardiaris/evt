@@ -35,9 +35,19 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
     'facebook' => [
-      'client_id' => '620054524861483',
-      'client_secret' => '25efb9ed4765ee71cb97222c0fcc3d06',
-      'redirect' => 'http://192.168.1.200:8000/cb/fb/',
+      'client_id' => env('FB_CLIENT_ID'),
+      'client_secret' => env('FB_CLIENT_SECRET'),
+      'redirect' => env('FB_REDIRECT'),
+    ],
+    'google' => [
+      'client_id' => env('GO_CLIENT_ID'),
+      'client_secret' => env('GO_CLIENT_SECRET'),
+      'redirect' => env('GO_REDIRECT'),
+    ],
+    'twitter' => [
+      'client_id' => env('TWITTER_CLIENT_ID'),
+      'client_secret' => env('TWITTER_CLIENT_SECRET'),
+      'redirect' => env('TWITTER_REDIRECT'),
     ],
 
 ];

@@ -80,8 +80,10 @@ class ProfileController extends Controller
 					}
 				}
 				$country_list=CountryList::where('country_id',$attribute_country_id)->first();
-				array_push($ar_name,'attribute_country');
-				array_push($ar_value,$country_list->country_name);
+				if(!empty($country_list)){
+					array_push($ar_name,'attribute_country');
+					array_push($ar_value,$country_list->country_name);
+				}
 				$profile = array_combine($ar_name,$ar_value);
 			}
 			return $profile;

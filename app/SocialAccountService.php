@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Hash;
 
 class SocialAccountService
 {
-  public function createOrGetUser(ProviderUser $providerUser)
+  public function createOrGetUser(ProviderUser $providerUser,$provider)
   {
-    $account = SocialAccount::whereProvider('facebook')
+    $account = SocialAccount::whereProvider($provider)
       ->whereProviderUserId($providerUser->getId())
       ->first();
 
@@ -18,14 +18,19 @@ class SocialAccountService
     } else {
       $account = new SocialAccount([
         'provider_user_id' => $providerUser->getId(),
-        'provider' => 'facebook'
+        'provider' => $provider
 
       ]);
 
       $user = User::whereEmail($providerUser->getEmail())->first();
       if (!$user) {
-        $_tmpuser = explode("@",$providerUser->getEmail());
-        $_username = $_tmpuser[0];
+        if($provider!='twitter'){
+          $_tmpuser = explode("@",$providerUser->getEmail());
+          $_username = $_tmpuser[0];
+        }
+        else{
+          $_username=str_random(15);
+        }
         $user = User::create([
           'email' => $providerUser->getEmail(),
           'name' => $providerUser->getName(),
@@ -37,7 +42,7 @@ class SocialAccountService
         UsersProfile::create([
           'users_id'=>$user->id,
           'attribute_name'=>'attribute_avatar',
-          'attribute_value'=>'https://graph.facebook.com/v2.8/'.$providerUser->getId().'/picture?width=1920'
+          'attribute_value'=>$providerUser->getAvatar()
         ]);
 
       }
