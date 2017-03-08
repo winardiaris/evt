@@ -47,17 +47,17 @@ class ProfileController extends Controller
 
         foreach($request->request as $key => $value){
           if(strpos($key,'attribute')!==false){
-            $userprofile = UsersProfile::where('users_id',$request->id)->where('attribute_name',$key)->first();
+            $userprofile = $user->profiles()->where('attribute_name',$key)->first();
             if(count($userprofile)>0){
               $userprofile->update([
                 'attribute_value'=>$value
               ]);
             }else{
-              UsersProfile::create([
-                'users_id'=>$request->id,
+              $profile = ([
                 'attribute_name'=>$key,
                 'attribute_value'=>$value
               ]);
+              $user->profiles()->create($profile);
             }
           }
 				}
@@ -66,7 +66,7 @@ class ProfileController extends Controller
     }
 		public function getUserProfile($username){
       $user=User::where('username',$username)->first();
-      $data_profile=UsersProfile::select('attribute_name','attribute_value')->where('users_id',$user->id)->get();
+      $data_profile = User::find($user->id)->profiles;
 			$profile='';
 			if($data_profile->count()>0){
 				$ar_name = array();
@@ -95,18 +95,18 @@ class ProfileController extends Controller
 				$file = $request->file('avatar');
 				$uploadImage = (new ImageContainerController)->uploadImage($user->id,$file,'avatar');
 				//disini nanti response upload gambar dengan macam ukuran
-				$userprofile = UsersProfile::where('users_id',$user->id)->where('attribute_name','attribute_avatar')->first();
+				$userprofile = $user->profiles()->where('attribute_name','attribute_avatar')->first();
 				if(count($userprofile)>0){
 					$userprofile->update([
 						'attribute_value'=>$uploadImage
 					]);
 				}else{
-					//insert
-					UsersProfile::create([
-						'users_id'=>$user->id,
+					$profile = new UsersProfile([
 						'attribute_name'=>'attribute_avatar',
 						'attribute_value'=>$uploadImage
 					]);
+
+          $user->profiles()->save($profile);
 				}
 				return redirect()->back();
 				/* return $uploadImage; */

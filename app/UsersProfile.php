@@ -11,4 +11,8 @@ class UsersProfile extends Model
       'users_id','attribute_name', 'attribute_value',
     ];
 
+    public function user(){
+      return $this->belongsTo('App\User','users_id');
+    }
+
 }
