@@ -37,31 +37,33 @@ class ProfileController extends Controller
       return view('profile.edit',compact('user','data_country','userProfile'));
     }
     public function update(Request $request){
+
       if($request){
-        $user = User::find($request->id);
-        $user->name =  $request->name;
-        $user->username =  $request->username;
-        $user->email =  $request->email;
-        $user->update();
+      dd($request);
+        /* $user = User::find($request->id); */
+        /* $user->name =  $request->name; */
+        /* $user->username =  $request->username; */
+        /* $user->email =  $request->email; */
+        /* $user->update(); */
 
 
-        foreach($request->request as $key => $value){
-          if(strpos($key,'attribute')!==false){
-            $userprofile = $user->profiles()->where('attribute_name',$key)->first();
-            if(count($userprofile)>0){
-              $userprofile->update([
-                'attribute_value'=>$value
-              ]);
-            }else{
-              $profile = ([
-                'attribute_name'=>$key,
-                'attribute_value'=>$value
-              ]);
-              $user->profiles()->create($profile);
-            }
-          }
-				}
-				return redirect()->route('profile-view',['username'=>$user->username]);
+        /* foreach($request->request as $key => $value){ */
+        /*   if(strpos($key,'attribute')!==false){ */
+        /*     $userprofile = $user->profiles()->where('attribute_name',$key)->first(); */
+        /*     if(count($userprofile)>0){ */
+        /*       $userprofile->update([ */
+        /*         'attribute_value'=>$value */
+        /*       ]); */
+        /*     }else{ */
+        /*       $profile = ([ */
+        /*         'attribute_name'=>$key, */
+        /*         'attribute_value'=>$value */
+        /*       ]); */
+        /*       $user->profiles()->create($profile); */
+        /*     } */
+        /*   } */
+				/* } */
+				/* return redirect()->route('profile-view',['username'=>$user->username]); */
       }
     }
 		public function getUserProfile($username){

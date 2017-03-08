@@ -68,7 +68,7 @@
 															</a>
 															<ul class="dropdown-menu" role="menu">
 															<li>
-																<a href="#"> 
+																<a href="#">
 																<img src="">
 																	arars following you
 																</a>
@@ -77,13 +77,19 @@
 														</li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-																		<img class="user_icon" src="{{!isset($userProfile['attribute_avatar']) ?  asset('img/defaultmanavatar.png'):$userProfile['attribute_avatar'] }}">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{-- <img class="user_icon" src="{{!isset($userProfile['attribute_avatar']) ?  asset('img/defaultmanavatar.png'):$userProfile['attribute_avatar'] }}"> --}}
+@if(Session::has('attribute_avatar'))
+  <img class="user_icon" src="{{Session::get('attribute_avatar')}}">
+@else
+  <img class="user_icon" src="{{asset('img/defaultmanavatar.png')}}">
+@endif
+
+                                    {{ Session::get('name') }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                      <a href="{{url(Auth::user()->username)}}">
+                                      <a href="{{url(Session::get('username'))}}">
                                         Profile
                                       </a>
                                     </li>

@@ -11,7 +11,7 @@ class SocialAccount extends Model
    {
      return $this->belongsTo(User::class);
    }
-   public function usersprofile(){
+   public function profiles(){
      return $this->belongsTo(UsersProfile::class);
    }
 }
