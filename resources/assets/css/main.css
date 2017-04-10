@@ -19,4 +19,7 @@
   font-size:1.5em;
   color:#1a1a1a;
 }
+.navbar-brand img{
+  max-height: 20px;
+}
 
