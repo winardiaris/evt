@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Auth;
+use Auth;
 use App\User;
-use App\OptionsController;
 
 class isAdmin
 {
@@ -18,8 +17,9 @@ class isAdmin
      */
     public function handle($request, Closure $next)
     {
-        $isAdmin = (new OptionController)->isAdmin(Auth::user()->id);
-        if($isAdmin == false ){
+        $options = Auth::user()->options();
+        $isAdmin = $options->where('option_name','is_admin')->get();
+        if(!count($isAdmin)>0){
             return redirect('/');
         }
         return $next($request);
