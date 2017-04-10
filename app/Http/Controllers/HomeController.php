@@ -30,15 +30,20 @@ class HomeController extends Controller
     {
       if (Auth::check()) {
         $user = User::find(Auth::id())->first();
-        $profiles = (new ProfileController)->getUserProfile(Auth::user()->username);
+        $profiles = (new ProfileController)->getUserProfile(Auth::user()->id);
+        $options = (new OptionsController)->getUserOption(Auth::user()->id);
 
         session([
           'user_id'=>Auth::id(),
           'username'=>Auth::user()->username,
           'name'=>Auth::user()->name,
         ]);
-        foreach($profiles as $key => $value){
-          session([$key=>$value]);
+        if(isset($profiles)){
+          if(count($profiles)>0){
+            foreach($profiles as $key => $value){
+              session([$key=>$value]);
+            }
+          }
         }
       }
         return view('welcome');

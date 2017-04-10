@@ -24,7 +24,7 @@ class ProfileController extends Controller
     }
     public function view(Request $request,$username){
       $user=User::where('username',$username)->first();
-      $userProfile = $this->getUserProfile($username);
+      $userProfile = $this->getUserProfile($user->id);
 			$isfriend = (new FriendListController)->isfriend(Auth::user()->id,$user->id);
 			$isapproved = (new FriendListController)->isapproved(Auth::user()->id,$user->id);
       return view('profile.view',compact('user','userProfile','isfriend','isapproved'));
@@ -32,43 +32,42 @@ class ProfileController extends Controller
     public function edit($username){
       $user=User::where('username',$username)->first();
       $data_country = DB::table('country_list')->pluck('country_name','country_id');
-      $userProfile = $this->getUserProfile($username);
+      $userProfile = $this->getUserProfile($user->id);
 
       return view('profile.edit',compact('user','data_country','userProfile'));
     }
     public function update(Request $request){
 
       if($request){
-      dd($request);
-        /* $user = User::find($request->id); */
-        /* $user->name =  $request->name; */
-        /* $user->username =  $request->username; */
-        /* $user->email =  $request->email; */
-        /* $user->update(); */
+        $user = User::find($request->id);
+        $user->name =  $request->name;
+        $user->username =  $request->username2;
+        $user->email =  $request->email;
+        $user->update();
 
 
-        /* foreach($request->request as $key => $value){ */
-        /*   if(strpos($key,'attribute')!==false){ */
-        /*     $userprofile = $user->profiles()->where('attribute_name',$key)->first(); */
-        /*     if(count($userprofile)>0){ */
-        /*       $userprofile->update([ */
-        /*         'attribute_value'=>$value */
-        /*       ]); */
-        /*     }else{ */
-        /*       $profile = ([ */
-        /*         'attribute_name'=>$key, */
-        /*         'attribute_value'=>$value */
-        /*       ]); */
-        /*       $user->profiles()->create($profile); */
-        /*     } */
-        /*   } */
-				/* } */
-				/* return redirect()->route('profile-view',['username'=>$user->username]); */
+        foreach($request->request as $key => $value){
+          if(strpos($key,'attribute')!==false){
+            $userprofile = $user->profiles()->where('attribute_name',$key)->first();
+            if(count($userprofile)>0){
+              $userprofile->update([
+                'attribute_value'=>$value
+              ]);
+            }else{
+              $profile = ([
+                'attribute_name'=>$key,
+                'attribute_value'=>$value
+              ]);
+              $user->profiles()->create($profile);
+            }
+          }
+				}
+				return redirect()->route('profile-view',['username'=>$user->username]);
       }
     }
-		public function getUserProfile($username){
-      $user=User::where('username',$username)->first();
-      $data_profile = User::find($user->id)->profiles;
+		public function getUserProfile($id){
+      // $user=User::where('username',$username)->first();
+      $data_profile = User::find($id)->profiles;
 			$profile='';
 			if($data_profile->count()>0){
 				$ar_name = array();
