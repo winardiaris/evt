@@ -29,6 +29,9 @@ class User extends Authenticatable
     public function profiles(){
        return $this->hasMany('App\UsersProfile','users_id');
     }
+    public function options(){
+       return $this->hasMany('App\UsersOption','users_id');
+    }
     public function friends(){
        return $this->hasMany('App\FriendList','users_id');
     }
