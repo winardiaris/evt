@@ -36,77 +36,81 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        <img src="{{asset('img/logo2.png')}}">
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+                    <form class="navbar-form navbar-left" style="width:65%">
+                        <div class="form-group" style="width:100%;position:relative;">
+                            <div class="input-group" style="width:100%;">
+                                <input class="form-control" name="s" placeholder="Search ...">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-											<li style="margin-top:10px">
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick">
-<input type="hidden" name="hosted_button_id" value="ZHMCFERZ2VPBY">
-<input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/id_ID/i/scr/pixel.gif" width="1" height="1">
-</form>
-
-</li>
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Log In</a></li>
-                            <li><a href="{{ route('register') }}">Sign Up</a></li>
-                        @else
-														<li class="dropdown">
-															<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-																<img class="addfriend_icon" src="{{asset('img/addfriend.png')}}">
-															</a>
-															<ul class="dropdown-menu" role="menu">
-															<li>
-																<a href="#">
-																<img src="">
-																	arars following you
-																</a>
-															</li>
-															</ul>
-														</li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{-- <img class="user_icon" src="{{!isset($userProfile['attribute_avatar']) ?  asset('img/defaultmanavatar.png'):$userProfile['attribute_avatar'] }}"> --}}
-@if(Session::has('attribute_avatar'))
-  <img class="user_icon" src="{{Session::get('attribute_avatar')}}">
-@else
-  <img class="user_icon" src="{{asset('img/defaultmanavatar.png')}}">
-@endif
-
-                                    {{ Session::get('name') }} <span class="caret"></span>
+                        <li style="margin-top:20px">
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="ZHMCFERZ2VPBY">
+                            <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+                            <img alt="" border="0" src="https://www.paypalobjects.com/id_ID/i/scr/pixel.gif" width="1" height="1">
+                            </form>
+                        </li>
+                    @if (Auth::guest())
+                        <li><a href="{{ route('login') }}">Log In</a></li>
+                        <li><a href="{{ route('register') }}">Sign Up</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <img class="addfriend_icon" src="{{asset('img/addfriend.png')}}">
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#">
+                                <img src="">
+                                    arars following you
                                 </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                      <a href="{{url(Session::get('username'))}}">
-                                        Profile
-                                      </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
                             </li>
-                        @endif
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                @if(Session::has('attribute_avatar'))
+                                    <img class="user_icon" src="{{Session::get('attribute_avatar')}}">
+                                @else
+                                    <img class="user_icon" src="{{asset('img/defaultmanavatar.png')}}">
+                                @endif
+                                {{ Session::get('name') }} <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{url(Session::get('username'))}}">
+                                    Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
                     </ul>
                 </div>
             </div>
