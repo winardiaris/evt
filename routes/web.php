@@ -27,5 +27,9 @@ Route::group(['middleware'=>'CheckUser'],function(){
   Route::post('/{username}/profile/update',['as'=>'profile-update','uses'=> 'ProfileController@update']);
   Route::post('/{username}/u/av',['as'=>'avatar-update','uses'=> 'ProfileController@avatarUpdate']);
 });
+Route::group(['middleware' =>'isAdmin'], function () {
+  Route::resource('/x/race_class', 'RaceClassController');
+
+});
 
 Route::post('/a/f/{username}',['as'=>'add-friend','uses'=>'FriendListController@addfriend']);
