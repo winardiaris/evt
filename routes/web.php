@@ -14,22 +14,34 @@
 Route::get('/', ['as'=>'home','uses'=>'HomeController@index']);
 
 Auth::routes();
+// General
+Route::get('/{username}/',['as'=>'profile-view','uses'=> 'ProfileController@view']);
 
-Route::get('/home', 'ProfileController@getAvatar');
+// Route::get('/home', 'ProfileController@getAvatar');
+
+// Social Login =================
 $s = 'social.';
 Route::get('/a/{provider}', ['as'=>$s.'redirect','uses'=>'SocialAuthController@redirect']);
 Route::get('/cb/{provider}', ['as'=>$s.'callback','uses'=>'SocialAuthController@callback']);
 
-Route::get('/{username}/',['as'=>'profile-view','uses'=> 'ProfileController@view']);
 
+
+
+// Middleware user logged in
 Route::group(['middleware'=>'CheckUser'],function(){
   Route::get('/{username}/profile/edit',['as'=>'profile-edit','uses'=> 'ProfileController@edit']);
   Route::post('/{username}/profile/update',['as'=>'profile-update','uses'=> 'ProfileController@update']);
   Route::post('/{username}/u/av',['as'=>'avatar-update','uses'=> 'ProfileController@avatarUpdate']);
 });
+
+
+// Admin =================
 Route::group(['middleware' =>'isAdmin'], function () {
   Route::resource('/x/race_class', 'RaceClassController');
 
 });
 
 Route::post('/a/f/{username}',['as'=>'add-friend','uses'=>'FriendListController@addfriend']);
+
+// Pages =================
+Route::get('/pages/donate', ['as'=>'donate','uses'=>'GeneralController@donate']);

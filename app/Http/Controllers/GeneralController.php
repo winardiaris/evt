@@ -35,4 +35,8 @@ class GeneralController extends Controller
       }
 
   }
+
+  public function donate(){
+    return view('page.donate');
+  }
 }

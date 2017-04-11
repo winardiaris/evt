@@ -56,18 +56,18 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        <li style="margin-top:20px">
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                            <input type="hidden" name="cmd" value="_s-xclick">
-                            <input type="hidden" name="hosted_button_id" value="ZHMCFERZ2VPBY">
-                            <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
-                            <img alt="" border="0" src="https://www.paypalobjects.com/id_ID/i/scr/pixel.gif" width="1" height="1">
-                            </form>
+                        <li>
+                            <a href="{{route('donate')}}">Donate</a>
                         </li>
                     @if (Auth::guest())
                         <li><a href="{{ route('login') }}">Log In</a></li>
                         <li><a href="{{ route('register') }}">Sign Up</a></li>
                     @else
+                        <li>
+                            <a class="navbar-brand" href="{{ url('/') }}">
+                                Home
+                            </a>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <img class="addfriend_icon" src="{{asset('img/addfriend.png')}}">
@@ -88,13 +88,15 @@
                                 @else
                                     <img class="user_icon" src="{{asset('img/defaultmanavatar.png')}}">
                                 @endif
-                                {{ Session::get('name') }} <span class="caret"></span>
-                            </a>
+                                                            </a>
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a href="{{url(Session::get('username'))}}">
-                                    Profile
+                                        <h5>
+                                            {{ Session::get('name') }}
+                                        </h5>
+                                        View profile
                                     </a>
                                 </li>
                                 <li>
