@@ -42,17 +42,8 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <form class="navbar-form navbar-left" style="width:65%">
-                        <div class="form-group" style="width:100%;position:relative;">
-                            <div class="input-group" style="width:100%;">
-                                <input class="form-control" name="s" placeholder="Search ...">
-                                <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                                </span>
-                            </div>
-                        </div>
-                    </form>
 
+                    @include('includes.searchbar')
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
@@ -70,7 +61,7 @@
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img class="addfriend_icon" src="{{asset('img/addfriend.png')}}">
+                                <i class="fa fa-user"></i>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                             <li>
@@ -79,8 +70,19 @@
                                     arars following you
                                 </a>
                             </li>
+                            <li>
+                                <a href="#">
+                                <img src="">
+                                    arars following you
+                                </a>
+                            </li>
+
                             </ul>
                         </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bell"></i></a>
+                        </li>
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 @if(Session::has('attribute_avatar'))
@@ -98,6 +100,10 @@
                                         </h5>
                                         View profile
                                     </a>
+                                </li>
+                                <li  role="separator" class="divider"></li>
+                                <li>
+                                    <a href="">Setting & Privacy</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('logout') }}"
