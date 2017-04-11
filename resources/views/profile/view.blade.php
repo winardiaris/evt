@@ -7,7 +7,7 @@
     @include('profile.avatar')
 
     @if(Auth::user()->id == $user->id)
-      <a href="{{route('profile-edit',['username'=>$user->username])}}">Edit</a>
+      <a href="{{route('profile-edit',['username'=>$user->username])}}" class="btn btn-primary btn-block">Edit profile</a>
     @else
       @if($isfriend)
         @if(!$isapproved)
