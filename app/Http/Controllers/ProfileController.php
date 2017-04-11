@@ -24,10 +24,16 @@ class ProfileController extends Controller
     }
     public function view(Request $request,$username){
       $user=User::where('username',$username)->first();
-      $userProfile = $this->getUserProfile($user->id);
-			$isfriend = (new FriendListController)->isfriend(Auth::user()->id,$user->id);
-			$isapproved = (new FriendListController)->isapproved(Auth::user()->id,$user->id);
-      return view('profile.view',compact('user','userProfile','isfriend','isapproved'));
+			if(count($user)>0){
+				$userProfile = $this->getUserProfile($user->id);
+				$isfriend = (new FriendListController)->isfriend(Auth::user()->id,$user->id);
+				$isapproved = (new FriendListController)->isapproved(Auth::user()->id,$user->id);
+				(new GeneralController)->userAutoLoad();
+				return view('profile.view',compact('user','userProfile','isfriend','isapproved'));
+			}
+			else{
+				return view('error.404');
+			}
     }
     public function edit($username){
       $user=User::where('username',$username)->first();
