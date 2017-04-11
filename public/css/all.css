@@ -33,6 +33,15 @@
 .navbar-brand img{
   max-height: 20px;
 }
+.error-page {
+  text-align: center;
+}
+.error-page h1 {
+  font-size: 30pt !important;
+}
+.navbar .nav > li > a > i{
+  font-size: 14pt;
+}
 
 
 /*
