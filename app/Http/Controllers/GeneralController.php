@@ -37,6 +37,16 @@ class GeneralController extends Controller
   }
 
   public function donate(){
-    return view('page.donate');
+    return view('pages.donate');
   }
+  public function searchGet(Request $request){
+    $search = $request->search;
+    return view('pages.searchresult',compact('search'));
+  }
+  public function searchPost(Request $request){
+    $search = $request->search;
+    $request->session()->flash('search', $search);
+    return redirect('/search/'.$search)->with('search',$search);
+  }
+
 }

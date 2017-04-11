@@ -16,6 +16,8 @@ Route::get('/', ['as'=>'home','uses'=>'HomeController@index']);
 Auth::routes();
 // General
 Route::get('/{username}/',['as'=>'profile-view','uses'=> 'ProfileController@view']);
+Route::get('/search/{search}/',['as'=>'search-get','uses'=> 'GeneralController@searchGet']);
+Route::post('/search/',['as'=>'search-post','uses'=> 'GeneralController@searchPost']);
 
 // Route::get('/home', 'ProfileController@getAvatar');
 
