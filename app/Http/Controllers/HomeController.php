@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+      $request->session()->reflash();
       (new GeneralController)->userAutoLoad();
       return view('welcome');
     }
