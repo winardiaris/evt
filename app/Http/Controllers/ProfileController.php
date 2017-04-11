@@ -26,8 +26,9 @@ class ProfileController extends Controller
       $user=User::where('username',$username)->first();
 			if(count($user)>0){
 				$userProfile = $this->getUserProfile($user->id);
-				$isfriend = (new FriendListController)->isfriend(Auth::user()->id,$user->id);
-				$isapproved = (new FriendListController)->isapproved(Auth::user()->id,$user->id);
+				$isfriend = (new FriendListController)->isfriend($request->session()->get('user_id'),$user->id);
+				$isapproved = (new FriendListController)->isapproved($request->session()->get('user_id'),$user->id);
+				// dd($isfriend);
 				(new GeneralController)->userAutoLoad();
 				return view('profile.view',compact('user','userProfile','isfriend','isapproved'));
 			}
