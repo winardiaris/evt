@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="/css/all.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{{asset('img/fav.png')}}"/>
 
     <!-- Scripts -->
     <script>
@@ -64,23 +65,45 @@
                                 <i class="fa fa-user"></i>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="#">
-                                <img src="">
-                                    arars following you
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                <img src="">
-                                    arars following you
-                                </a>
-                            </li>
-
+                                <li>
+                                    <a href="#">
+                                    <img src="">
+                                        arars following you
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    <img src="">
+                                        arars following you
+                                    </a>
+                                </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bell"></i></a>
+                        <li class="dropdown">
+                            <a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="#">
+                                    <img src="">
+                                        xxxx Comment on yyyy's event
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    <img src="">
+                                        xxxx like your comment
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    <img src="">
+                                        yyyy's updated event aaaa
+                                    </a>
+                                </li>
+                            </ul>
+
                         </li>
 
                         <li class="dropdown">
@@ -118,8 +141,14 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <div class="navbar-form navbar-left">
+                                <a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i>  Write</a>
+                            </div>
+                        </li>
                     @endif
                     </ul>
+
                 </div>
             </div>
         </nav>
