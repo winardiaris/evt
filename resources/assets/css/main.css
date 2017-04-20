@@ -50,4 +50,7 @@
 .navbar .nav > li > a > i{
   font-size: 14pt;
 }
+.btn-social span.fa{
+  padding: 7px 0 0 0;
+}
 
