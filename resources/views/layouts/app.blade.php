@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }} @yield('title')</title>
 
     <!-- Styles -->
-    <link href="/css/all.css" rel="stylesheet">
+    <link href="{{asset('css/all.css')}}" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{{asset('img/fav.png')}}"/>
 
     <!-- Scripts -->
@@ -124,6 +124,12 @@
                                         View profile
                                     </a>
                                 </li>
+
+                                {{-- @if (Auth::users()->isAdmin())
+                                <li>
+                                    <a href="">Admin Panel</a>
+                                </li>
+                                @endif --}}
                                 <li  role="separator" class="divider"></li>
                                 <li>
                                     <a href="">Setting & Privacy</a>
@@ -143,7 +149,7 @@
                         </li>
                         <li>
                             <div class="navbar-form navbar-left">
-                                <a href="#" class="btn btn-primary"><i class="fa fa-pencil"></i>  Write</a>
+                                <a href="#" class="btn btn-primary">Create</a>
                             </div>
                         </li>
                     @endif
@@ -159,5 +165,7 @@
     <!-- Scripts -->
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/all.js')}}"></script>
+    <!-- Include this after the sweet alert js file -->
+    @include('sweet::alert')
 </body>
 </html>

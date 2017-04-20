@@ -165,6 +165,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,6 +234,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'ProfileController' => App\Http\Controllers\ProfileController::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
 
     ],
 
