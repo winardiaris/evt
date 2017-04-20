@@ -15,7 +15,8 @@ class CheckUser
      */
     public function handle($request, Closure $next)
     {
-      if($request->username != Auth::user()->username ){
+      //handle update profile another user
+      if($request->segment(1) != Auth::user()->username ){
         return redirect('/');
       }
         return $next($request);
