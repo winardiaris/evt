@@ -15,6 +15,25 @@
 .user-avatar .inputAvatar{
   display:none;
 }
+.user-avatar .isme{
+  cursor: pointer;
+}
+.user-avatar .isme .click-me{
+  background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
+  color: #fff;
+  font-size: 14pt;
+  height: auto;
+  margin: 0;
+  padding: 53px 57px;
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  width: auto;
+  display: none;
+}
+.user-avatar .isme:hover .click-me{
+  display: block;
+}
 .user-info span{
   font-size:1.5em;
   color:#1a1a1a;
