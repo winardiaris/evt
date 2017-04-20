@@ -7,9 +7,9 @@ $(document).ready(function(){
     $('.avatarSubmit').click();
   });
 
-  $('input#username').keyup(function(){
-    console.log($(this).val());
-    $('input[name=usr]').val($(this).val());
-  });
+  // $('input[name=username2]').keypress(function(){
+  //   console.log($(this).val());
+  //   $('input[name=username]').val($(this).val());
+  // });
 });
 
