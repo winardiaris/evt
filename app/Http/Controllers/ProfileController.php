@@ -45,11 +45,22 @@ class ProfileController extends Controller
       return view('profile.edit',compact('user','data_country','userProfile'));
     }
     public function update(Request $request){
-
       if($request){
         $user = User::find($request->id);
+				if($request->username == $user->username AND $request->email != $user->email){
+					$this->validate($request, [
+						'name'=>'required|min:10',
+						'email' => 'required|email|unique:users',
+					]);
+				}
+				elseif($request->username != $user->username AND $request->email == $user->email){
+					$this->validate($request, [
+						'name'=>'required|min:10',
+						'username'=>'required|min:8|unique:users',
+					]);
+				}
         $user->name =  $request->name;
-        $user->username =  $request->username2;
+        $user->username =  $request->username;
         $user->email =  $request->email;
         $user->update();
 
