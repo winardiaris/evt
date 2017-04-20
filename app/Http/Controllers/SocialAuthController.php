@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\SocialAccountService;
 use Socialite;
+use Alert;
 
 class SocialAuthController extends Controller
 {
@@ -23,10 +24,11 @@ class SocialAuthController extends Controller
 
    public function callback(SocialAccountService $service,$provider)
    {
-     // when facebook call us a with token
-     $authUser = Socialite::driver($provider)->user();
-     $user = $service->createOrGetUser($authUser,$provider);
-     auth()->login($user);
-     return redirect()->to('/');
+    // when facebook call us a with token
+    $authUser = Socialite::driver($provider)->user();
+    $user = $service->createOrGetUser($authUser,$provider);
+    auth()->login($user);
+    Alert::success('Welcome back '.$user->username);
+    return redirect()->to('/');
    }
 }
