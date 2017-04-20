@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use Alert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Facade;
 //============
@@ -69,6 +70,7 @@ class ProfileController extends Controller
             }
           }
 				}
+				Alert::success('Profile updated');
 				return redirect()->route('profile-view',['username'=>$user->username]);
       }
     }
@@ -113,13 +115,14 @@ class ProfileController extends Controller
 						'attribute_name'=>'attribute_avatar',
 						'attribute_value'=>$uploadImage
 					]);
-
           $user->profiles()->save($profile);
 				}
+				Alert::success('Avatar updated');
 				return redirect()->back();
 				/* return $uploadImage; */
 			}
-			return "tidak ada photo // harusnya redirect kesebelumnya dan kasih notif salah filetype";
+			Alert::error('File not supported');
+			return redirect()->back();
 		}
 
 }
