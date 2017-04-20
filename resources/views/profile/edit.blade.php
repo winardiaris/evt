@@ -9,7 +9,7 @@
   <div class="col-md-8">
     <div class="panel panel-default">
       <div class="panel-body">
-      {{ Form::model($user,['route'=>['profile-update',$user->username],'method'=>'POST'])}}
+      {{ Form::model($user,['route'=>['profile-update',Auth::user()->username],'method'=>'POST'])}}
         @include('profile.form')
 <input type="hidden" name="usr">
         {!! Form::submit('Save',['class'=>'btn btn-primary']) !!}
