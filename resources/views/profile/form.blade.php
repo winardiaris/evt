@@ -7,8 +7,7 @@
 </div>
 <div class="form-group {!! $errors->has('username') ? 'has-error':'' !!}">
   {!!Form::label('username','Username') !!}
-  {!!Form::text('username2',$user->username,['class'=>'form-control','placeholder'=>'Username']) !!}
-  {!!Form::text('username',null,['hidden'=>'true']) !!}
+  {!!Form::text('username',$user->username,['class'=>'form-control','placeholder'=>'Username']) !!}
   {!! $errors->first('username','<p class="help-block">:message</p>')!!}
 </div>
 <div class="form-group {!! $errors->has('email') ? 'has-error':'' !!}">
