@@ -11,7 +11,9 @@
     @else
       @if($isfriend)
         @if(!$isapproved)
-          <button class="btn btn-default btn-block">waiting for approval</button>
+          <button class="btn btn-default btn-block">Waiting for approval</button>
+        @else
+          <button class="btn btn-success btn-block">Following</button>
         @endif
       @else
         {{Form::model($user,['route'=>['add-friend',$user->username],'method'=>'POST'])}}

@@ -22,31 +22,22 @@ class FriendListController extends Controller
       ]);
       $user=User::where('username',$request->session()->get('username', 'default'))->first();
       $user->friends()->save($create);
-      return redirect()->route('profile-view',['username'=>$username]);
+      // return redirect()->route('profile-view',['username'=>$user->username]);
+      return redirect()->back();
+      // return dd($request);
     }
-    public function isfriend($users_id,$friend_users_id){
-      $user = User::find($users_id);
+    public function isfriend($user,$friend_users_id){
       $friendlist = $user->friends()->where('friend_users_id',$friend_users_id)->first();
-      if(!empty($friendlist)){
-        return true;
-      }
-      else{
-        return false;
-      }
-    }
-    public function isapproved($users_id,$friend_users_id){
-      $user = User::find($users_id);
-      $friendlist = $user->friends()->where('friend_users_id',$friend_users_id)->first();
-      if(!empty($friendlist)){
+      if(count($friendlist)>0){
         if($friendlist->allow){
-          return true;
-        }
-        else{
-          return false;
+          $return = array('isfriend'=>true,'isapproved'=>true);
+        }else{
+          $return = array('isfriend'=>true,'isapproved'=>false);
         }
       }
       else{
-        return false;
+          $return = array('isfriend'=>false,'isapproved'=>false);
       }
+      return $return;
     }
 }

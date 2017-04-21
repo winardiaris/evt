@@ -26,11 +26,15 @@ class ProfileController extends Controller
     public function view(Request $request,$username){
       $user=User::where('username',$username)->first();
 			if(count($user)>0){
-				$userProfile = $this->getUserProfile($user->id);
-				$isfriend = (new FriendListController)->isfriend($request->session()->get('user_id'),$user->id);
-				$isapproved = (new FriendListController)->isapproved($request->session()->get('user_id'),$user->id);
+				if($username != Auth::user()->username){
+					$friend = (new FriendListController)->isfriend(Auth::user(),$user->id);
+					$isfriend = $friend['isfriend'];
+					$isapproved = $friend['isapproved'];
+
+				}
+				$userProfile = $this->getUserProfile($user);
 				// dd($isfriend);
-				(new GeneralController)->userAutoLoad();
+				// (new GeneralController)->userAutoLoad();
 				return view('profile.view',compact('user','userProfile','isfriend','isapproved'));
 			}
 			else{
@@ -38,9 +42,10 @@ class ProfileController extends Controller
 			}
     }
     public function edit($username){
-      $user=User::where('username',$username)->first();
+      $user=Auth::user();
       $data_country = DB::table('country_list')->pluck('country_name','country_id');
-      $userProfile = $this->getUserProfile($user->id);
+      $userProfile = $this->getUserProfile($user);
+			(new GeneralController)->userAutoLoad();
 
       return view('profile.edit',compact('user','data_country','userProfile'));
     }
@@ -85,9 +90,8 @@ class ProfileController extends Controller
 				return redirect()->route('profile-view',['username'=>$user->username]);
       }
     }
-		public function getUserProfile($id){
-      // $user=User::where('username',$username)->first();
-      $data_profile = User::find($id)->profiles;
+		public function getUserProfile($user){
+      $data_profile = $user->profiles;
 			$profile='';
 			if($data_profile->count()>0){
 				$ar_name = array();

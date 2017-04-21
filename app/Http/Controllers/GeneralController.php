@@ -16,9 +16,8 @@ class GeneralController extends Controller
   }
   public function userAutoLoad(){
       if (Auth::check()) {
-        $user = User::find(Auth::id())->first();
-        $profiles = (new ProfileController)->getUserProfile(Auth::user()->id);
-        $options = (new OptionsController)->getUserOption(Auth::user()->id);
+        $profiles = (new ProfileController)->getUserProfile(Auth::user());
+        $options = (new OptionsController)->getUserOption(Auth::user());
 
         session([
           'user_id'=>Auth::id(),

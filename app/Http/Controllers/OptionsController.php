@@ -12,9 +12,8 @@ class OptionsController extends Controller
     {
       $this->middleware('auth');
     }
-    public function getUserOption($id){
-        // $user=User::where('username',$username)->first();
-        $data_option = User::find($id)->options;
+    public function getUserOption($user){
+        $data_option = $user->options;
         $option='';
         if($data_option->count()>0){
             $ar_name = array();
@@ -27,8 +26,8 @@ class OptionsController extends Controller
         }
         return $option;
     }
-    public function isAdmin($id){
-        $options = $this->getUserOption($id);
+    public function isAdmin($user){
+        $options = $this->getUserOption($user->id);
         return (array_key_exists('is_admin',$options));
     }
 
