@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
       $this->call(UserSeeder::class);
       $this->call(UsersOptionSeeder::class);
       $this->call(UsersProfileSeeder::class);
-      $this->call(RaceClassSeeder::class);
+      $this->call(CurrenciesSeeder::class);
+      $this->call(DummyDataSeeder::class);
     }
 }

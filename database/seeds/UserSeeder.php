@@ -13,10 +13,12 @@ class UserSeeder extends Seeder
     {
         return  DB::table('users')->insert(
             array(
-              'name' => env('ADMIN_NAME'),
-              'username' => env('ADMIN_USERNAME'),
-              'email' => env('ADMIN_EMAIL'),
-              'password' => Hash::make(env('ADMIN_PASSWORD')),
+                'name' => env('ADMIN_NAME'),
+                'username' => env('ADMIN_USERNAME'),
+                'email' => env('ADMIN_EMAIL'),
+                'password' => Hash::make(env('ADMIN_PASSWORD')),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             )
           );
     }
