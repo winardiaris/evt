@@ -35,5 +35,11 @@ class User extends Authenticatable
     public function friends(){
        return $this->hasMany('App\FriendList','users_id');
     }
+    public function posts(){
+       return $this->hasMany('App\Post','users_id');
+    }
+    public function images(){
+       return $this->hasMany('App\ImageContainer','users_id');
+    }
 
 }
