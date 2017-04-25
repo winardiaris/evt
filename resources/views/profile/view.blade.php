@@ -27,7 +27,7 @@
 
   </div>
   <div class="col-md-8 ">
-    disini nanti list acara yang dibuat
+    disini nanti list acara yang dibuat / aktivitas user
   </div>
 </div>
 </div>
