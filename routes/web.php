@@ -39,7 +39,7 @@ Route::group(['middleware'=>'CheckUser'],function(){
 
 // Admin =================
 Route::group(['middleware' =>'isAdmin'], function () {
-  Route::resource('/x/race_class', 'RaceClassController');
+  // Route::resource('/x/race_class', 'RaceClassController');
 
 });
 
