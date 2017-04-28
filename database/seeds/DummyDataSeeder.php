@@ -28,14 +28,14 @@ class DummyDataSeeder extends Seeder
             $attribute_country_id = array('IDN','USA','ITA','MYS');
             $profiles = [
                 [
-                    'users_id' => $i+1,
+                    'users_id' => $i+2,
                     'attribute_name' => 'attribute_avatar',
                     'attribute_value' => $faker->imageUrl($width=200,$height=200),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
-                    'users_id' => $i+1,
+                    'users_id' => $i+2,
                     'attribute_name' => 'attribute_country_id',
                     'attribute_value' => $attribute_country_id[rand(0,3)],
                     'created_at' => date('Y-m-d H:i:s'),
@@ -127,7 +127,7 @@ class DummyDataSeeder extends Seeder
                 [
                     'users_id'=>rand(1,11),
                     'image_type'=>'avatar',
-                    'image_url'=>$faker->imageUrl($width=640,$height=400),
+                    'image_url'=>$faker->imageUrl($width=400,$height=400),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ],
