@@ -26,8 +26,11 @@
 
 
   </div>
-  <div class="col-md-8 ">
-    disini nanti list acara yang dibuat / aktivitas user
+  <div class="col-md-6 ">
+  @foreach ($posts as $post)
+    @include('post.post')
+  @endforeach
+    {{-- disini nanti list acara yang dibuat / aktivitas user --}}
   </div>
 </div>
 </div>
