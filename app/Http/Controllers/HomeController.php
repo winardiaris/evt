@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 /* use Illuminate\Support\Facades\Auth; */
 
 class HomeController extends Controller
@@ -25,7 +26,8 @@ class HomeController extends Controller
     public function index(Request $request)
     {
       $request->session()->reflash();
+      $posts = Post::with('getImages.container','getCategories.category','user')->orderBy('time_start','desc')->get();
       (new GeneralController)->userAutoLoad();
-      return view('welcome');
+      return view('welcome',compact('posts'));
     }
 }
