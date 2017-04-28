@@ -13,8 +13,10 @@ const { mix } = require('laravel-mix');
 
 mix.js('resources/assets/js/app.js', 'public/js')
   .combine([
+    'node_modules/sweetalert/dist/sweetalert.min.js',
+    'resources/assets/js/zepto.js',
+    'resources/assets/js/jquery.waterfall.js',
     'resources/assets/js/main.js',
-    'node_modules/sweetalert/dist/sweetalert.min.js'
   ],'public/js/all.js')
   .combine([
     'resources/assets/css/bootstrap.min.css',

@@ -53,4 +53,12 @@
 .btn-social span.fa{
   padding: 7px 0 0 0;
 }
+.image-container {
+  width: 100%;
+  position: relative;
+}
+.image-container .post-image{
+  width: 100%;
+  height: auto;
+}
 
