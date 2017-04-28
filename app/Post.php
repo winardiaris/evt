@@ -11,10 +11,10 @@ class Post extends Model
     protected $fillable = [
         'users_id','description', 'place', 'currency_id','price','time_start','time_end',
     ];
-    public function haveCategory(){
+    public function getCategories(){
         return $this->hasMany('App\PostHaveCategory','post_id');
     }
-    public function image(){
+    public function getImages(){
         return $this->hasMany('App\PostImage','post_id');
     }
     public function user(){
