@@ -14,6 +14,7 @@ use App\UsersProfile;
 use App\CountryList;
 use App\FriendList;
 use App\ImageContainer;
+use App\Post;
 
 
 
@@ -33,9 +34,10 @@ class ProfileController extends Controller
 
 				}
 				$userProfile = $this->getUserProfile($user);
+				$posts = Post::with('user','getCategories.category','getImages.container')->where('users_id',$user->id)->get();
 				// dd($isfriend);
 				// (new GeneralController)->userAutoLoad();
-				return view('profile.view',compact('user','userProfile','isfriend','isapproved'));
+				return view('profile.view',compact('user','userProfile','isfriend','isapproved','posts'));
 			}
 			else{
 				return view('error.404');
