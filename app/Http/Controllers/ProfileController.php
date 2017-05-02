@@ -34,7 +34,7 @@ class ProfileController extends Controller
 
 				}
 				$userProfile = $this->getUserProfile($user);
-				$posts = Post::with('user','getCategories.category','getImages.container')->where('users_id',$user->id)->get();
+				$posts = Post::with('user.profiles','getCategories.category','getImages.container')->where('users_id',$user->id)->get();
 				// dd($isfriend);
 				// (new GeneralController)->userAutoLoad();
 				return view('profile.view',compact('user','userProfile','isfriend','isapproved','posts'));

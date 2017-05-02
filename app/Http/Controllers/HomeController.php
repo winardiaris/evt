@@ -24,14 +24,14 @@ class HomeController extends Controller
     {
       if(Auth::user()){
         $request->session()->reflash();
-        $posts = Post::with('getImages.container','getCategories.category','user')
+        $posts = Post::with('getImages.container','getCategories.category','user.profiles')
                   ->orderBy('time_start','desc')
                   ->get();
         (new GeneralController)->userAutoLoad();
         return view('welcome',compact('posts'));
       }
       else{
-        $posts = Post::with('getImages.container','getCategories.category','user')
+        $posts = Post::with('getImages.container','getCategories.category','user.profiles')
                   ->orderBy('time_start','desc')
                   ->limit(10)
                   ->get();
