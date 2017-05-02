@@ -21,8 +21,12 @@ class PostController extends Controller
       $post = Post::find($id)->first();
       return view('post.view',compact('post'));
     }
-    public function save(){
-
+    public function create(){
+      $user=Auth::user();
+      return view('post.create',compact('user'));
+    }
+    public function save(Request $request){
+      return dd($request);
     }
     public function edit(){
 
