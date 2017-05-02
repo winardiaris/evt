@@ -64,8 +64,8 @@ class DummyDataSeeder extends Seeder
                     'place'=>$faker->address,
                     'currency_id'=>253,
                     'price'=>rand(5,15),
-                    'time_start'=>date('Y-m-d H:i:s',strtotime('+3 days')),
-                    'time_end'=>date('Y-m-d H:i:s',strtotime('+3 days 12 hours')),
+                    'time_start'=>date('Y-m-d H:i:s',strtotime('+7 days')),
+                    'time_end'=>date('Y-m-d H:i:s',strtotime('+7 days 12 hours')),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ]
@@ -116,21 +116,21 @@ class DummyDataSeeder extends Seeder
             //image container
             $image_container = [
                 [
-                    'users_id'=>rand(1,$c_user),
+                    'users_id'=>rand($c_user,$c_user+$i),
                     'image_type'=>'post',
                     'image_url'=>$faker->imageUrl($width=640,$height=400),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
-                    'users_id'=>rand(1,$c_user),
+                    'users_id'=>rand($c_user,$c_user+$i),
                     'image_type'=>'post',
                     'image_url'=>$faker->imageUrl($width=640,$height=400),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
-                    'users_id'=>rand(1,$c_user),
+                    'users_id'=>rand($c_user,$c_user+$i),
                     'image_type'=>'avatar',
                     'image_url'=>$faker->imageUrl($width=400,$height=400),
                     'created_at' => date('Y-m-d H:i:s'),
