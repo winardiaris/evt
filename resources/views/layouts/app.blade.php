@@ -149,7 +149,7 @@
                         </li>
                         <li>
                             <div class="navbar-form navbar-left">
-                                <a href="#" class="btn btn-primary">Create</a>
+                                <a href="{{route('post-create')}}" class="btn btn-primary">Create</a>
                             </div>
                         </li>
                     @endif
@@ -164,7 +164,8 @@
 
     <!-- Scripts -->
     <script src="{{asset('js/app.js')}}"></script>
-    <script src="{{asset('js/all.js')}}"></script>
+    <script src="{{asset('js/static.js')}}"></script>
+    <script src="{{asset('js/main.js')}}"></script>
     <!-- Include this after the sweet alert js file -->
     @include('sweet::alert')
 </body>

@@ -20,6 +20,7 @@ Route::get('/search/{search}/',['as' => 'search-get','uses' => 'GeneralControlle
 Route::post('/search/',['as' => 'search-post','uses' => 'GeneralController@searchPost']);
 Route::get('/{username}/post/{id}',['as' => 'post-view','uses' => 'PostController@view']);
 Route::get('/search/category/{id}',['as' => 'category-view','uses' => 'PostController@category']);
+Route::get('/post/create/',['as' => 'post-create', 'uses'=>'PostController@create']);
 
 // Route::get('/home', 'ProfileController@getAvatar');
 
@@ -38,7 +39,7 @@ Route::group(['middleware' => 'CheckUser'],function(){
   Route::post('/{username}/profile/update',['as' => 'profile-update','uses' => 'ProfileController@update']);
 
   //posts
-  Route::post('/{username}/post/new/',['as' => 'post-new','uses' => 'PostController@save']);
+  Route::post('/{username}/post/new/',['as' => 'post-save','uses' => 'PostController@save']);
   Route::get('/{username}/post/{id}/edit',['as' => 'post-edit','uses' => 'PostController@edit']);
   Route::post('/{username}/post/update/',['as' => 'post-update','uses' => 'PostController@update']);
 });
