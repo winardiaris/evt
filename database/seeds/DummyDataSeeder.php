@@ -15,6 +15,23 @@ class DummyDataSeeder extends Seeder
         $limit = 10;
         $attribute_country_id = array('IDN','USA','ITA','MYS');
         $c_user = count(App\User::all());
+        $img = array(
+                '/img/dummy/1.jpg',
+                '/img/dummy/2.jpg',
+                '/img/dummy/3.png',
+                '/img/dummy/4.svg',
+                '/img/dummy/5.jpg',
+                '/img/dummy/6.jpg',
+                '/img/dummy/7.jpg',
+                '/img/dummy/8.jpg',
+                '/img/dummy/9.png',
+                '/img/dummy/10.png',
+                '/img/dummy/11.png',
+                '/img/dummy/12.png',
+                '/img/dummy/13.svg',
+                '/img/dummy/14.jpg',
+                '/img/dummy/15.png',
+                '/img/dummy/16.png');
 
         for($i=0;$i<=$limit;$i++){
             //users
@@ -31,7 +48,7 @@ class DummyDataSeeder extends Seeder
                 [
                     'users_id' => $c_user+$i,
                     'attribute_name' => 'attribute_avatar',
-                    'attribute_value' => $faker->imageUrl($width=200,$height=200),
+                    'attribute_value' => $img[rand(0,15)],
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ],
@@ -118,28 +135,29 @@ class DummyDataSeeder extends Seeder
                 [
                     'users_id'=>rand($c_user,$c_user+$i),
                     'image_type'=>'post',
-                    'image_url'=>$faker->imageUrl($width=640,$height=400),
+                    'image_url'=>$img[rand(0,15)],
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'users_id'=>rand($c_user,$c_user+$i),
                     'image_type'=>'post',
-                    'image_url'=>$faker->imageUrl($width=640,$height=400),
+                    'image_url'=>$img[rand(0,15)],
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ],
                 [
                     'users_id'=>rand($c_user,$c_user+$i),
-                    'image_type'=>'avatar',
-                    'image_url'=>$faker->imageUrl($width=400,$height=400),
+                    'image_type'=>'post',
+                    'image_url'=>$img[rand(0,15)],
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ],
             ];
             DB::table('image_container')->insert($image_container);
             //post image
-            $c_container = count(App\ImageContainer::all());
+            $container = App\ImageContainer::where('image_type','post')->get();
+            $c_container = count($container);
             echo "count container: ".$c_container;
             $post_images = [
                 [
