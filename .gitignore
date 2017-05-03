@@ -9,5 +9,7 @@ Homestead.yaml
 .env
 npm-debug.log*
 /public/u
+/public/js
+/public/css
 *.sh
 .vscode
