@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Alert;
+use Illuminate\Support\Facades\DB;
 
 use App\User;
 use App\Post;
@@ -23,7 +24,8 @@ class PostController extends Controller
     }
     public function create(){
       $user=Auth::user();
-      return view('post.create',compact('user'));
+      $currency = DB::table('currency')->pluck('currency_code','id');
+      return view('post.create',compact('user','currency'));
     }
     public function save(Request $request){
       return dd($request);
