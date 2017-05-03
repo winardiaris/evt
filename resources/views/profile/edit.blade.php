@@ -21,3 +21,11 @@
 </div>
 @endsection
 
+@section('js')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.fn.select2.defaults.set("theme", "bootstrap");
+            $("select").select2();
+        });
+    </script>
+@endsection
