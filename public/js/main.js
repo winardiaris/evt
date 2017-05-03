@@ -6,13 +6,8 @@ $(document).ready(function(){
   $("div.isme .inputAvatar").change(function(){
     $('.avatarSubmit').click();
   });
+  $('.dropdown-toggle').dropdown();
   $(".waterfall").waterfall();
-  $(".bootstrap-tagsinput input").addClass('form-control');
-
-  // $('input[name=username2]').keypress(function(){
-  //   console.log($(this).val());
-  //   $('input[name=username]').val($(this).val());
-  // });
   $("#file-1").fileinput({
     uploadUrl: '#', // you must set a valid URL here else you will get an error
     allowedFileExtensions: ['jpg', 'png', 'svg'],
