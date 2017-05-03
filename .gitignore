@@ -11,5 +11,6 @@ npm-debug.log*
 /public/u
 /public/js/*
 /public/css/*
+/public/fonts/*
 *.sh
 .vscode
