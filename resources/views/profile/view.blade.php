@@ -27,10 +27,17 @@
 
   </div>
   <div class="col-md-6 ">
-  @foreach ($posts as $post)
-    @include('post.post')
-  @endforeach
-    {{-- disini nanti list acara yang dibuat / aktivitas user --}}
+  @if(count($posts)>0)
+    @foreach ($posts as $post)
+      @include('post.post')
+    @endforeach
+  @else
+    <div class="panel panel-default">
+      <div class="panel-body text-center">
+        No activity
+      </div>
+    </div>
+  @endif
   </div>
 </div>
 </div>
