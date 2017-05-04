@@ -1,3 +1,7 @@
+#app{
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
 .welcome-logo{
   width:300px;
 }
@@ -52,5 +56,28 @@
 }
 .btn-social span.fa{
   padding: 7px 0 0 0;
+}
+.image-container {
+  width: 100%;
+  position: relative;
+}
+.image-container .post-image{
+  width: 100%;
+  height: auto;
+}
+.img-icon{
+  height: 20px;
+  margin-right: 5px;
+}
+.image-container .post-image:first-child{
+  display: block;
+}
+.image-container .post-image{
+  display: none;
+}
+.btn-transparant{
+  background:none;
+  color: #3e3f3a;
+  font-size:12pt;
 }
 

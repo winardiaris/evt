@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Post;
 /* use Illuminate\Support\Facades\Auth; */
 
 class HomeController extends Controller
@@ -12,10 +14,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    /* public function __construct() */
-    /* { */
-    /*     $this->middleware('auth'); */
-    /* } */
 
     /**
      * Show the application dashboard.
@@ -24,8 +22,20 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-      $request->session()->reflash();
-      (new GeneralController)->userAutoLoad();
-      return view('welcome');
+      if(Auth::user()){
+        $request->session()->reflash();
+        $posts = Post::with('getImages.container','getCategories.category','user.profiles')
+                  ->orderBy('time_start','desc')
+                  ->get();
+        (new GeneralController)->userAutoLoad();
+        return view('welcome',compact('posts'));
+      }
+      else{
+        $posts = Post::with('getImages.container','getCategories.category','user.profiles')
+                  ->orderBy('time_start','desc')
+                  ->limit(10)
+                  ->get();
+        return view('welcome',compact('posts'));
+      }
     }
 }
